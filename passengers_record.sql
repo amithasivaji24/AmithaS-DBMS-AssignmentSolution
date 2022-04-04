@@ -3,7 +3,15 @@
 create database if not exists `passengers-record`;
 
 use `passengers-record`;
-drop table passenger;
+
+create table if not exists `PRICE`
+(
+`Bus_Type` varchar(15),
+`Distance` int,
+`Price` int,
+primary key(`Bus_Type`, `Distance`)
+);
+
 create table if not exists `PASSENGER`
 (`Passenger_name` varchar(25),
 `Category` varchar(10),
@@ -15,26 +23,7 @@ create table if not exists `PASSENGER`
 foreign key(`Bus_Type`, `Distance`) references price(`Bus_Type`, `Distance`)
 );
 
-create table if not exists `PRICE`
-(
-`Bus_Type` varchar(15),
-`Distance` int,
-`Price` int,
-primary key(`Bus_Type`, `Distance`)
-);
-
 #2) Inserting records into tables
-
-insert into PASSENGER values("Sejal", "AC", 'F', "Bengaluru", "Chennai", 350, "Sleeper");
-insert into PASSENGER values("Anmol", "Non-AC", 'M', "Mumbai", "Hyderabad", 700, "Sitting");
-insert into PASSENGER values("Pallavi", "AC", 'F', "Panaji", "Bengaluru", 600, "Sleeper");
-insert into PASSENGER values("Khusboo", "AC", 'F', "Chennai", "Mumbai", 1500, "Sleeper");
-insert into PASSENGER values("Udit", "Non-AC", 'M', "Trivandrum", "panaji", 1000, "Sleeper");
-insert into PASSENGER values("Ankur", "AC", 'M', "Nagpur", "Hyderabad", 500, "Sitting");
-insert into PASSENGER values("Hemant", "Non-AC", 'M', "panaji", "Mumbai", 700, "Sleeper");
-insert into PASSENGER values("Manish", "Non-AC", 'M', "Hyderabad", "Bengaluru", 500, "Sitting");
-insert into PASSENGER values("Piyush", "AC", 'M', "Pune", "Nagpur", 700, "Sitting");
-
 
 insert into PRICE values("Sleeper", 350, 770);
 insert into PRICE values("Sleeper", 500, 1100);
@@ -49,6 +38,16 @@ insert into PRICE values("Sitting", 700, 868);
 insert into PRICE values("Sitting", 1000, 1240);
 insert into PRICE values("Sitting", 1200, 1488);
 insert into PRICE values("Sitting", 1500, 1860);
+
+insert into PASSENGER values("Sejal", "AC", 'F', "Bengaluru", "Chennai", 350, "Sleeper");
+insert into PASSENGER values("Anmol", "Non-AC", 'M', "Mumbai", "Hyderabad", 700, "Sitting");
+insert into PASSENGER values("Pallavi", "AC", 'F', "Panaji", "Bengaluru", 600, "Sleeper");
+insert into PASSENGER values("Khusboo", "AC", 'F', "Chennai", "Mumbai", 1500, "Sleeper");
+insert into PASSENGER values("Udit", "Non-AC", 'M', "Trivandrum", "panaji", 1000, "Sleeper");
+insert into PASSENGER values("Ankur", "AC", 'M', "Nagpur", "Hyderabad", 500, "Sitting");
+insert into PASSENGER values("Hemant", "Non-AC", 'M', "panaji", "Mumbai", 700, "Sleeper");
+insert into PASSENGER values("Manish", "Non-AC", 'M', "Hyderabad", "Bengaluru", 500, "Sitting");
+insert into PASSENGER values("Piyush", "AC", 'M', "Pune", "Nagpur", 700, "Sitting");
 
 #3)
 select passenger.gender, count(passenger.gender) from passenger where passenger.distance >= 600 group by passenger.gender;
