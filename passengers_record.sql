@@ -59,12 +59,10 @@ select min(price.price) from price where price.bus_type = "Sleeper";
 select passenger.passenger_name from passenger where passenger_name like 'S%';
 
 #6)
-select passenger.passenger_name, passenger.boarding_city, passenger.destination_city, price.price from 
-	passenger, price where passenger.bus_type = price.bus_type and passenger.distance = price.distance;
+select passenger.passenger_name, passenger.boarding_city, passenger.destination_city, price.price from passenger natural join price;
     
 #7)
-select passenger.passenger_name, price.price from passenger inner join price on
- passenger.bus_type = price.bus_type and price.distance = passenger.distance and price.bus_type = "Sitting" and passenger.distance = 1000;
+select passenger.passenger_name, price.price from passenger natural join price where price.bus_type = "Sitting" and passenger.distance = 1000;
  
 #8)
 select price.bus_type, price.price from price inner join passenger on
